@@ -1,0 +1,81 @@
+a{
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: default-font;
+    src: url('../Fonts/segoeui.ttf') format('truetype');
+}
+
+body {
+    background: #DB6E51;
+    margin: 0;
+    display: flex;
+    font-family: default-font;
+}
+
+#left_container {
+    background-color: #EE8658;
+    width: 47%;
+    height: 90%;
+    margin-top: 3.5%;
+    margin-left: 3.5%;
+    border-radius: 30px;
+    position:relative;
+}
+
+#right_container {
+    width: 50%;
+    height: 100%;
+    position:relative;
+    display: flex;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    float: left;
+    left: 45%;
+    top: 34%;
+}
+
+#logo_container {
+    background-color: #EE8658;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    float: left;
+    left: 45%;
+    top: 34%;
+    display: flex;
+    border-radius: 30px;
+}
+
+#logo_container img { margin: auto; width: 70px; height: 70px;}
+
+#name_container {
+    position: absolute;
+    float: left;
+    top: 43%;
+    color: wheat;
+    width: auto;
+    text-align: center;
+    font-size: 34px;
+    left: 18%;
+    line-height: 13px;
+}
+
+.button {
+    background-color: #EE8658;
+    position: absolute;
+    float: left;
+    top: 57%;
+    color: wheat;
+    text-align: center;
+    font-size: 36px;
+    left: 38%;
+    padding: 13px 36px 19px 36px;
+    border-radius: 50px;
+    cursor: pointer;
+}
