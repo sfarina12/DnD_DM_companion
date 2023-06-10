@@ -160,7 +160,8 @@ $(document).ready(function(){
         $($($($(node_ev)[0]).children()).children()[0]).on("touchstart",function(node_ev){
             if($(open_node).attr("to") != "") 
                 delete_all_paths(open_node)
-            node_list.splice($(open_node).attr("id"), 1)
+            //node_list.splice($(open_node).attr("id"), 1)
+            node_list[$(open_node).attr("id")] = null
             $("#map_container").remove("#"+$(open_node).attr("id"))
             $($(open_node)).remove()
         })
@@ -173,17 +174,18 @@ $(document).ready(function(){
     }
 
     function update_path (node_ev) {
-        node_ev.svg.forEach(function(this_path) {
-            var dest_id = $(this_path).attr("id").split("-")
+        if(node_ev != null)
+            node_ev.svg.forEach(function(this_path) {
+                var dest_id = $(this_path).attr("id").split("-")
+                
+                dest_id = $(this_path).attr("id").substring(5,$(this_path).attr("id").length)
+                dest_id = dest_id.substring(dest_id.indexOf("_")+1,dest_id.length)
             
-            dest_id = $(this_path).attr("id").substring(5,$(this_path).attr("id").length)
-            dest_id = dest_id.substring(dest_id.indexOf("_")+1,dest_id.length)
-
-            connectElements($("#svg1"),
-                            $(this_path),
-                            $(node_ev.ui),
-                            $("#"+dest_id))
-        })
+                connectElements($("#svg1"),
+                                $(this_path),
+                                $(node_ev.ui),
+                                $("#"+dest_id))
+            })
     }
 
     function add_path (node_ev,destination_id) {
