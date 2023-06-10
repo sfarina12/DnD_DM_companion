@@ -41,7 +41,7 @@ body {
 
 #map_container::-webkit-scrollbar { display: none; }
 #node_info_container::-webkit-scrollbar { display: none; }
-#node_info_container div::-webkit-scrollbar { display: none; }
+#info_groups_container::-webkit-scrollbar { display: none; }
 
 #node_info_container {
     background-color: #EE8658;
@@ -57,12 +57,12 @@ body {
     transition-timing-function: ease;
 }
 
-#node_info_container > div {
+#info_groups_container {
     overflow: scroll;
     height: 100%;
 }
 
-#node_info_container > div > p {
+.info_group_name {
     font-size: 41px;
     color: wheat;
     font-weight: bold;
@@ -85,14 +85,13 @@ body {
     border-style: solid;
     border-color: #EE8658;
     border-width: 10px;
-    
 }
 
 .button {
     background-color: #5F3B41;
     position: fixed;
     float: left;
-    top: 90%;
+    bottom: 4%;
     color: wheat;
     text-align: center;
     font-size: 36px;
@@ -100,6 +99,10 @@ body {
     padding: 13px 36px 19px 36px;
     border-radius: 50px;
     cursor: pointer;
+    border-style: solid;
+    border-color: #EE8658;
+    border-width: 10px;
+    z-index: 10;
 }
 
 .inflate {
@@ -121,8 +124,8 @@ body {
 .btn_container { 
     min-height: 100px;
     margin-left: 22px;
-    width: 518px;
-    background-color: #db6e51;
+    width: 479px;
+    background-color: #5f3b41;
     border-radius: 15px;
     font-size: 41px;
     color: #f5deb3;
@@ -133,9 +136,9 @@ body {
 }
 
 .node_list_element {
-    background-color: #ee8658;
+    background-color: #7c808e;
     min-height: 100px;
-    width: 442px;
+    width: 403px;
     border-radius: 15px;
     font-size: 41px;
     color: #f5deb3;
@@ -143,7 +146,6 @@ body {
     margin-left: 26px;
     margin-top: 25px;
     position: relative;
-    z-index: 99;
     max-height: 100px;
     white-space: nowrap;
     overflow: hidden;
@@ -155,10 +157,10 @@ body {
 .connected_node > div {
     position: relative;
     top: -94px;
-    right: -364px;
+    right: -336px;
     width: 132px;
     height: 104px;
-    background-image: linear-gradient(to right, transparent, #DB6E51 44px);
+    background-image: linear-gradient(to right, transparent, #5f3b41 44px);
 }
 
 .connected_node > div > img {
@@ -168,9 +170,9 @@ body {
 }
 
 .connected_node {
-    background-color: #DB6E51;
+    background-color: #5f3b41;
     min-height: 100px;
-    width: 491px;
+    width: 450px;
     border-radius: 15px;
     font-size: 41px;
     color: #f5deb3;
@@ -181,4 +183,79 @@ body {
     z-index: 99;
     margin-bottom: 24px;
     padding-left: 26px;
+}
+
+#info_quest_name {
+    float: right;
+    font-size: 35px;
+    color: wheat;
+    margin-right: 28px;
+    font-weight: bold;
+    margin-top: 28px;
+    width: 436px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+}
+
+.info_group {
+    padding-top: 1px;
+    background-color: #db6e51;
+    margin-left: 21px;
+    margin-right: 21px;
+    border-radius: 22px;
+    padding-bottom: 18px;
+}
+
+#info_header {
+    position: fixed;
+    background-color: #ee8658;
+    border-radius: 30px;
+    height: 99px;
+    z-index: 99;
+}
+
+#new_node_wizard {
+    position: relative;
+    background: #db6e51;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    font-size: 48px;
+    color: wheat;
+}
+
+#new_node_wizard > input {
+    margin-top: 37px;
+    width: 1000px;
+    height: 82px;
+    border-radius: 50px;
+    border: solid 6px #db6e51;
+    background-color: #ee8658;
+    margin-bottom: 33px;
+    color: wheat;
+    font-size: 40px;
+    padding-left: 26px;
+}
+#new_node_wizard > input:focus { outline: solid 5px #5f3b41; }
+
+#new_node_wizard > div {
+    width: 400px;
+    background-color: #5f3b41;
+    text-align: center;
+    height: 79px;
+    padding-top: 6px;
+    border-radius: 50px;
+}
+
+#close_new_node_wizard {
+    position: absolute;
+    right: 9px;
+    top: 10px;
 }

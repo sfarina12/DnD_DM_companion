@@ -44,7 +44,7 @@ $(document).ready(function(){
 
     function show_past_connections(element) {
         find_element_to_connect($(element).attr("to").split("-")).forEach(function(k,v){
-            $("#node_info_container > div p").after('<div ccnt="'+$(k).attr("id")+'" class="connected_node" style="max-height: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">'+$(k).html()+'<div><img src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/trash.png" alt="trash"/></div></div>')
+            $("#list_possible_conn").after('<div ccnt="'+$(k).attr("id")+'" class="connected_node" style="max-height: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">'+$(k).html()+'<div><img src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/trash.png" alt="trash"/></div></div>')
             $(".connected_node > div").on("touchend",function(){ 
                 delete_path($(this).parent()) 
                 $(this).parent().remove()
@@ -56,7 +56,7 @@ $(document).ready(function(){
     $("#add_connection div").click(function(){
         if(!is_open_ac) {
             is_open_ac = true;
-            $("#add_connection").attr("style",OPEN_CONNECTION_PANEL+" height: "+(($(".quest_node").length*125)+88)+"px;")
+            $("#add_connection").attr("style",OPEN_CONNECTION_PANEL+" height: "+((($(".quest_node").length-1)*125)+88)+"px;")
             
             populate_connections_list()
         } else {
@@ -83,18 +83,33 @@ $(document).ready(function(){
         }
     })
 
-    $("#new_node").click(function(){
-        set_nodes(true)
+    $("#new_node").click(function(){   
+        $("#new_node_wizard").attr("style","opacity: 0; ")
+        $( "#new_node_wizard" ).animate({ opacity: 1, }, 300, function() {});
     }) 
+
+    $("#close_new_node_wizard").click(function(){
+        $( "#new_node_wizard" ).animate({ opacity: 0, }, 300, function() {
+            $("#new_node_wizard").attr("style","opacity: 0; display:none")
+        });
+    })
+
+    $("#new_node_wizard > div").click(function(){
+        set_nodes(true,false,$("#new_node_wizard > input").val())
+        $( "#new_node_wizard" ).animate({ opacity: 0, }, 300, function() {
+            $("#new_node_wizard").attr("style","opacity: 0; display:none")
+        });
+    })
 
     function populate_connections_list () {
         $(".quest_node").each(function(k,v){
             var this_node_id = $(v).attr("id")
-            var conn_choise = $('<div cnt="'+this_node_id+'" class="node_list_element">'+v.textContent+"</div>")
+            if(this_node_id != $(open_node).attr("id"))
+                var conn_choise = $('<div cnt="'+this_node_id+'" class="node_list_element">'+v.textContent+"</div>")
             $("#add_connection").append(conn_choise)
 
             $(conn_choise).on("touchend",function() {
-                $("#node_info_container > div p").after('<div ccnt="'+this_node_id+'" class="connected_node" style="max-height: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">'+v.textContent+'<div><img src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/trash.png" alt="trash"/></div></div>')
+                $("#list_possible_conn").after('<div ccnt="'+this_node_id+'" class="connected_node" style="max-height: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">'+v.textContent+'<div><img src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/trash.png" alt="trash"/></div></div>')
                 $(".connected_node > div").on("touchend",function(){
                    delete_path($(this).parent())
                    $(this).parent().remove()
@@ -115,10 +130,12 @@ $(document).ready(function(){
             tml_open_node = this;
             timer = setTimeout(function(){
                 $("#node_info_container").addClass("expand_node_info_container")
-                /* */
-                $("#info_quest_name").innerHTML = node_ev.innerText
-                console.log($("#info_quest_name"))
-                /* */                
+
+                if(node_ev.innerText != undefined)
+                    $("#info_quest_name").text(node_ev.innerText)
+                else
+                    $("#info_quest_name").text($($(node_ev)[0]).text())
+          
                 open_node = tml_open_node;
                 tml_open_node = null;
                 show_past_connections(open_node)
@@ -178,9 +195,9 @@ $(document).ready(function(){
         
     }
 
-    function set_nodes(make_new = false,debug = false) {
+    function set_nodes(make_new = false,debug = false,quest_name="test_name") {
         if(make_new) {
-            var new_element = $('<div id="'+node_list.length+'" to="" class="quest_node" style="left: 15px; top: 21px;"></div>')
+            var new_element = $('<div id="'+node_list.length+'" to="" class="quest_node" style="left: 15px; top: 21px;">'+quest_name+'</div>')
             $("#map_container").prepend(new_element)
             build_node(new_element)
         }

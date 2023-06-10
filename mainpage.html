@@ -9,7 +9,14 @@
     <body>
         <div id="navbar_container"></div>
         <div id="map_container">
-            <div class="button" id="new_node">New quest</div>
+            <div id="new_node_wizard" style="opacity: 0; display:none">
+                What's the name of this quest?
+                <input type="text" name="new_node_name">
+                <div>Add new quest</div>
+                <img id="close_new_node_wizard" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
+            </div>
+            <div class="button" id="new_node"> New quest </div>
+
             <div id="0" to="" class="quest_node" style="left: 700px; top: 500px;">sono un nome 1</div>
             <div id="1" to="" class="quest_node" style="left: 200px; top: 200px;">sono un nome 2</div>
             <div id="2" to="" class="quest_node" style="left: 300px; top: 400px;">sono un nome 3</div>
@@ -19,12 +26,16 @@
             </div>
         </div>
         <div id="node_info_container">
-            <img id="close_node_info" src="https://img.icons8.com/fluency-systems-filled/96/DB6E51/close-window.png" alt="delete-sign"/>
-            <p id="info_quest_name">rsd</p>
-            <div>
-                <p>Quest connections</p>
-                <div class="btn_container" id="add_connection" style="padding: unset; text-align: center; height:100px;">
-                    <div><img style="width: 74px; margin-top: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/></div>
+            <div id="info_header">
+                <img id="close_node_info" src="https://img.icons8.com/fluency-systems-filled/96/DB6E51/close-window.png" alt="delete-sign"/>
+                <p id="info_quest_name">¯\_(ツ)_/¯</p>
+            </div>
+            <div id="info_groups_container">
+                <div class="info_group" style="margin-top: 108px;">
+                    <p class="info_group_name" id="list_possible_conn">Quest connections</p>
+                    <div class="btn_container" id="add_connection" style="padding: unset; text-align: center; height:100px;">
+                        <div><img style="width: 74px; margin-top: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/></div>
+                    </div>
                 </div>
             </div>
         </div>
