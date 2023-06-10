@@ -10,8 +10,6 @@ $(document).ready(function(){
     var node_list = []
     var isDragging = false;
     var draggingElement = null;
-    var initX
-    var initY
     var timer;
     var is_open_ac = false;
     var open_node = null;
@@ -19,10 +17,11 @@ $(document).ready(function(){
     var global_path_counter = 0;
     const OPEN_CONNECTION_PANEL = "padding: unset; text-align: center; padding-bottom:23;"
     const CLOSE_CONNECTION_PANEL = "padding: unset; text-align: center; height:100px"
+    const time_to_open_info_pane = 1;
 
     //DEBUG PURPOSE, when fully created this pre function fill not be necessary anymore
     //permette di attaccare gli eventi a i nodi preesistenti per il debug
-    set_nodes(false,true)
+    //set_nodes(false,true)
 
     $("#close_node_info").on("touchend",function(){
         $("#node_info_container").removeClass("expand_node_info_container")
@@ -44,7 +43,7 @@ $(document).ready(function(){
 
     function show_past_connections(element) {
         find_element_to_connect($(element).attr("to").split("-")).forEach(function(k,v){
-            $("#list_possible_conn").after('<div ccnt="'+$(k).attr("id")+'" class="connected_node" style="max-height: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">'+$(k).html()+'<div><img src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/trash.png" alt="trash"/></div></div>')
+            $("#list_possible_conn").after('<div ccnt="'+$(k).attr("id")+'" class="connected_node" style="max-height: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">'+$(k).text()+'<div><img src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/trash.png" alt="trash"/></div></div>')
             $(".connected_node > div").on("touchend",function(){ 
                 delete_path($(this).parent()) 
                 $(this).parent().remove()
@@ -56,7 +55,8 @@ $(document).ready(function(){
     $("#add_connection div").click(function(){
         if(!is_open_ac) {
             is_open_ac = true;
-            $("#add_connection").attr("style",OPEN_CONNECTION_PANEL+" height: "+((($(".quest_node").length-1)*125)+88)+"px;")
+            if($(".quest_node").length != 1)
+                $("#add_connection").attr("style",OPEN_CONNECTION_PANEL+" height: "+((($(".quest_node").length-1)*125)+88)+"px;")
             
             populate_connections_list()
         } else {
@@ -67,13 +67,13 @@ $(document).ready(function(){
     })
 
     $(document).on('touchmove',function(e){
-        
         if(isDragging) {
-            var newX = (e.touches[0].clientX - parseInt($("#svg1").position().left) - 200)+"px;"
+            var newX = (e.touches[0].clientX - parseInt($("#svg1").position().left) - 211)+"px;"
             var newY = (e.touches[0].clientY - parseInt($("#svg1").position().top) - 75)+"px;"
             var id_node = $(draggingElement).attr("id");
-            $(draggingElement).attr("style","left: "+newX+" top: "+newY)
             
+            $(draggingElement).attr("style","left: "+newX+" top: "+newY)
+
             $(".quest_node").each(function (k,v) { 
                 if($(v).attr("to").includes(id_node)) {
                     update_path(node_list[$(v).attr("id")])
@@ -91,6 +91,7 @@ $(document).ready(function(){
     $("#close_new_node_wizard").click(function(){
         $( "#new_node_wizard" ).animate({ opacity: 0, }, 300, function() {
             $("#new_node_wizard").attr("style","opacity: 0; display:none")
+            $("#new_node_wizard > input").val("")
         });
     })
 
@@ -98,6 +99,7 @@ $(document).ready(function(){
         set_nodes(true,false,$("#new_node_wizard > input").val())
         $( "#new_node_wizard" ).animate({ opacity: 0, }, 300, function() {
             $("#new_node_wizard").attr("style","opacity: 0; display:none")
+            $("#new_node_wizard > input").val("")
         });
     })
 
@@ -122,25 +124,46 @@ $(document).ready(function(){
         })
     }
     
+    $(document).click(function() {
+        if(open_node != null)
+            $($(open_node).children()).attr("style","height: 0px")
+    })
+
     function attach_node_events (node_ev) {
-        $(node_ev).on('touchstart', function() { initX = $(this).css("left"); initY = $(this).css("top"); draggingElement=this; isDragging = true })
+        $(node_ev).on('touchstart', function() { 
+            draggingElement=this; isDragging = true; 
+            if(open_node!=draggingElement)
+                $($(open_node).children()).attr("style","height: 0px")
+        })
         $(node_ev).on('touchend', function() { draggingElement=null; isDragging = false })
         $(node_ev).on("touchstart",function(e){
             e.preventDefault()
             tml_open_node = this;
+            clearTimeout(timer);
             timer = setTimeout(function(){
-                $("#node_info_container").addClass("expand_node_info_container")
-
-                if(node_ev.innerText != undefined)
-                    $("#info_quest_name").text(node_ev.innerText)
-                else
-                    $("#info_quest_name").text($($(node_ev)[0]).text())
-          
+                $($(node_ev[0]).children()).attr("style","height: 110px")
                 open_node = tml_open_node;
                 tml_open_node = null;
-                show_past_connections(open_node)
-            },1*1000);
+            },time_to_open_info_pane*1000);
         }).on("touchend touchmove",function(){ clearTimeout(timer); tml_open_node = null; });
+        
+        $($($($(node_ev)[0]).children()).children()[1]).on("touchstart",function(node_ev){
+            $("#node_info_container").addClass("expand_node_info_container")
+
+            if(open_node.innerText != undefined)
+                $("#info_quest_name").text(open_node.innerText)
+            else
+                $("#info_quest_name").text($($(open_node)[0]).text())
+            
+            show_past_connections(open_node)
+        })
+        $($($($(node_ev)[0]).children()).children()[0]).on("touchstart",function(node_ev){
+            if($(open_node).attr("to") != "") 
+                delete_all_paths(open_node)
+            node_list.splice($(open_node).attr("id"), 1)
+            $("#map_container").remove("#"+$(open_node).attr("id"))
+            $($(open_node)).remove()
+        })
     }
 
     function build_node (node_to_build) {
@@ -195,9 +218,23 @@ $(document).ready(function(){
         
     }
 
+    function delete_all_paths (this_node) {
+        node_list[$(this_node).attr("id")].svg.forEach(function(k,v){            
+            $(k).remove()
+        })
+    }
+
     function set_nodes(make_new = false,debug = false,quest_name="test_name") {
         if(make_new) {
-            var new_element = $('<div id="'+node_list.length+'" to="" class="quest_node" style="left: 15px; top: 21px;">'+quest_name+'</div>')
+            var new_element = $('<div id="'+node_list.length+'" to="" class="quest_node" style="left: 15px; top: 21px;">'+
+                                    quest_name+
+                                    '<div style="height:0px">'+
+                                        '<img id="delete_btn" src="https://img.icons8.com/fluency-systems-filled/96/ff4545/close-window.png" alt="delete-sign"/>'+
+                                        '<div id="info_btn">'+
+                                            '<img src="https://img.icons8.com/fluency-systems-filled/96/442a2e/menu.png" alt="menu"/>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>')
             $("#map_container").prepend(new_element)
             build_node(new_element)
         }

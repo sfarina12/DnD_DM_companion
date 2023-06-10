@@ -13,6 +13,7 @@ body {
     display: flex;
     font-family: default-font;
     overscroll-behavior: none;
+    overflow: hidden;
 }
 
 #navbar_container {
@@ -36,7 +37,6 @@ body {
     border-radius: 30px;
     position: relative;
     overflow: auto;
-    /*overflow: hidden;*/
 }
 
 #map_container::-webkit-scrollbar { display: none; }
@@ -45,16 +45,17 @@ body {
 
 #node_info_container {
     background-color: #EE8658;
-    width: 0%;
     height: 95%;
     margin-top: 1.5%;
     margin-left: 2.5%;
-    margin-right: 0%;
     border-radius: 30px;
     position: relative;
     overflow: auto;
-    transition: width .3s;
+    overflow-x: hidden;
+    transition: all .3s;
     transition-timing-function: ease;
+    width: 48%;
+    margin-right: -48.5%;    
 }
 
 #info_groups_container {
@@ -72,19 +73,26 @@ body {
 }
 
 .expand_node_info_container {
-    width: 48% !important;
     margin-right: 2.5% !important;
 }
 
 .quest_node {
+    color: wheat;
     width: 400px;
-    height: 150px;
+    min-height: 100px;
     background-color: #5F3B41;
     position: absolute;
     border-radius: 30px;
     border-style: solid;
     border-color: #EE8658;
     border-width: 10px;
+    font-size: 48px;
+    display: grid;
+    align-items: end;
+    justify-items: center;
+    padding: 22px;
+    padding-top: 6px;
+    padding-bottom: 16px;
 }
 
 .button {
@@ -258,4 +266,29 @@ body {
     position: absolute;
     right: 9px;
     top: 10px;
+}
+
+.quest_node > div {
+    background: #442a2e;
+    width: 111%;
+    /*height: 110px;*/
+    margin-bottom: -17px;
+    margin-top: 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    transition: height .3s;
+}
+
+#info_btn {
+    background: #9da2b4;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 11px;
+    padding: 7px;
+}
+
+#info_btn img {
+    width: 67px;
 }
