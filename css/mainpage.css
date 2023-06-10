@@ -23,7 +23,7 @@ body {
     min-width:140px;
     height: 95%;
     margin-top: 1.5%;
-    margin-left: 2.5%;
+    margin-left: 2%;
     border-radius: 30px;
     position: relative;
 }
@@ -291,4 +291,19 @@ body {
 
 #info_btn img {
     width: 67px;
+}
+
+.nav_btn {
+    background: #db6e51;
+    margin-top: 21px;
+    margin-left: 21px;
+    margin-right: 21px;
+    border-radius: 17px;
+    height: 98;
+}
+
+.nav_btn img {
+    width: 77px;
+    margin-left: 9px;
+    margin-top: 10px;
 }

@@ -177,10 +177,10 @@ $(document).ready(function(){
         if(node_ev != null)
             node_ev.svg.forEach(function(this_path) {
                 var dest_id = $(this_path).attr("id").split("-")
-                
+
                 dest_id = $(this_path).attr("id").substring(5,$(this_path).attr("id").length)
                 dest_id = dest_id.substring(dest_id.indexOf("_")+1,dest_id.length)
-            
+
                 connectElements($("#svg1"),
                                 $(this_path),
                                 $(node_ev.ui),
