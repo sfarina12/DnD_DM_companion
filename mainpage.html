@@ -8,19 +8,20 @@
     </head>
     <body>
         <div id="navbar_container">
-            <div class="nav_btn"><img src="https://img.icons8.com/fluency/96/map-editing.png" alt="map-editing"/></div>
-            <div class="nav_btn"><img src="https://img.icons8.com/fluency/96/magical-scroll.png" alt="map-editing"/></div>
+            <div class="nav_btn nav_btn_selected" page="container_map_container"><img src="https://img.icons8.com/fluency/96/map-editing.png" alt="map-editing"/></div>
+            <div class="nav_btn" page="container_quest_container"><img src="https://img.icons8.com/fluency/96/magical-scroll.png" alt="map-editing"/></div>
         </div>
         
-        <div id="map_container">
-            <div id="new_node_wizard" style="opacity: 0; display:none">
+        <div id="container_map_container" style="width: 100%; display: contents;">
+            <div id="map_container">
+                <div id="new_node_wizard" style="opacity: 0; display:none">
                 What's the name of this quest?
                 <input type="text" name="new_node_name">
                 <div>Add new quest</div>
                 <img id="close_new_node_wizard" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
-            </div>
-            <div class="button" id="new_node"> New quest </div>            
-            <div id="svgContainer" style="    
+                </div>
+                <div class="button" id="new_node"> New quest </div>            
+                <div id="svgContainer" style="    
                                         width: 1000%;
                                         height: 1000%;
                                         background-image: url('https://img.icons8.com/fluency-systems-filled/96/DB6E51/map-editing.png');
@@ -29,25 +30,47 @@
                                         background-position-x: 4.3%;
                                         background-position-y: 3.4%;">
                 <svg id="svg1" style="width:1000%; height:1000%;"></svg>
+                </div>
             </div>
-        </div>
-        
-        <div id="node_info_container">
-            <div id="info_header">
-                <img id="close_node_info" src="https://img.icons8.com/fluency-systems-filled/96/c43d3d/close-window.png" alt="delete-sign"/>
-                <p id="info_quest_name">¯\_(ツ)_/¯</p>
-            </div>
-            <div id="info_groups_container">
-                <div class="info_group" style="margin-top: 108px;">
-                    <p class="info_group_name" id="list_possible_conn">Quest connections</p>
-                    <div class="btn_container" id="add_connection" style="padding: unset; text-align: center; height:100px;">
-                        <div><img style="width: 74px; margin-top: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/></div>
+            <div id="node_info_container">
+                <div id="info_header">
+                    <img id="close_node_info" src="https://img.icons8.com/fluency-systems-filled/96/c43d3d/close-window.png" alt="delete-sign"/>
+                    <p id="info_quest_name">¯\_(ツ)_/¯</p>
+                </div>
+                <div id="info_groups_container">
+                    <div class="info_group" style="margin-top: 108px;">
+                        <p class="info_group_name" id="list_possible_conn">Quest connections</p>
+                        <div class="btn_container" id="add_connection" style="padding: unset; text-align: center; height:100px;">
+                            <div><img style="width: 74px; margin-top: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="container_quest_container" style="width: 100%; display: contents;" class="closed">
+            <div id="quest_container">
+                <div id="new_quest">
+                    <img style="width: 74px; margin-top: 12px; margin-bottom: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/>
+                </div>
+            </div>
+            <div id="quest_container_tabs">
+                <div id="tab_list">
+                    <div class="tab">Description</div>
+                    <div class="tab">Steps</div>
+                    <div class="tab">Loot</div>
+                    <div class="tab">Npcs</div>
+                </div>
+                <div id="tab_body">
+
+                </div>
+            </div>
+        </div>
+        
+        
     </body>
 
     <script src="js/better_node_builder.js"></script>
+    <script src="js/navigation_system.js"></script>
     <script src="js/svgDraw.js"></script>
 </html>

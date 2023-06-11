@@ -26,9 +26,10 @@ body {
     margin-left: 2%;
     border-radius: 30px;
     position: relative;
+    overflow: hidden;
 }
 
-#map_container {
+#map_container, #quest_container {
     background-color: #EE8658;
     width: 87%;
     height: 95%;
@@ -300,10 +301,97 @@ body {
     margin-right: 21px;
     border-radius: 17px;
     height: 98;
+    transition: all .3s;
 }
 
 .nav_btn img {
     width: 77px;
     margin-left: 9px;
     margin-top: 10px;
+}
+
+.nav_btn_selected {
+    margin-right: 0;
+    margin-left: 42px;
+    border-radius: 17px 0px 0 17px;
+    position: relative;
+    --myVar: 0;
+    transition: height .3s;
+}
+
+.nav_btn_selected::before {
+    content: "";
+    position: absolute;
+    background-color: #ee8658;
+    top: 98px;
+    width: 45px;
+    border-top-right-radius: 22px;
+    right: 0px;
+    box-shadow: 17px 0px 0 0 #db6e51;
+    height: var(--myVar);
+  }
+
+.nav_btn_selected::after {
+    content: "";
+    position: absolute;
+    background-color: #ee8658;
+    top: -21px;
+    width: 45px;
+    border-bottom-right-radius: 22px;
+    right: 0px;
+    box-shadow: 17px 0px 0 0 #db6e51;
+    height: var(--myVar);
+}
+
+.closed {display: none !important;}
+
+#quest_container_tabs {
+    width: 87%;
+    height: 95%;
+    margin-top: 1.5%;
+    margin-left: 2.5%;
+    position: relative;
+    overflow: auto;
+    margin-right: 2.5%;
+}
+
+#tab_body {
+    background-color: #EE8658;
+    width: 100%;
+    height: 89%;
+    border-radius: 30px;
+    overflow: auto;
+    position: absolute;
+    bottom: 0px;
+}
+
+#tab_list {
+    gap: 28px;
+    display: flex;
+    width: 100%;
+    height: 9%;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.tab {
+    width: 100%;
+    height: 100%;
+    background-color: #ee8658;
+    border-radius: 30px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    color: wheat;
+    font-size: 32px;
+    font-weight: bold;
+    justify-content: center;
+}
+
+#new_quest {
+    background-color: #db6e51;
+    display: flex;
+    justify-content: center;
+    margin: 21px;
+    border-radius: 14px;
 }
