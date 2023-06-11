@@ -353,6 +353,7 @@ body {
     position: relative;
     overflow: auto;
     margin-right: 2.5%;
+    overflow-x: hidden;
 }
 
 #tab_body {
@@ -376,7 +377,7 @@ body {
 
 .tab {
     width: 100%;
-    height: 100%;
+    height: 100% !important;
     background-color: #ee8658;
     border-radius: 30px;
     display: grid;
@@ -386,6 +387,10 @@ body {
     font-size: 32px;
     font-weight: bold;
     justify-content: center;
+    transition: margin .3s;
+    margin-top: 0px;
+    position: relative;
+    z-index: 8;
 }
 
 #new_quest {
@@ -394,4 +399,36 @@ body {
     justify-content: center;
     margin: 21px;
     border-radius: 14px;
+}
+
+.tab_selected {
+    margin-top: 26px;
+    border-radius: 30px 30px 0 0;
+    transition: all;
+    height: var(--myVar_2);
+    z-index: 1;
+}
+
+.tab_selected::before {
+    content: "";
+    position: absolute;
+    background-color: #db6e51;
+    top: 88px;
+    width: 44px;
+    border-bottom-right-radius: 22px;
+    right: 179px;
+    box-shadow: 31px 0px 0 0 #ee8658;
+    height: var(--myVar_2);
+  }
+
+.tab_selected::after {
+    content: "";
+    position: absolute;
+    background-color: #db6e51;
+    top: 88px;
+    width: 44px;
+    border-bottom-left-radius: 22px;
+    right: -44px;
+    box-shadow: -31px 0px 0 0 #ee8658;
+    height: var(--myVar_2);
 }
