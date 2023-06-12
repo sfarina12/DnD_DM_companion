@@ -1,5 +1,6 @@
 $(document).ready(function(){ 
     var act_selected_quest = null;
+    
 
     $("#new_node_wizard_2 > div").click(function(){
         add_quest_to_list($("#new_node_wizard_2 > input").val())
@@ -23,9 +24,12 @@ $(document).ready(function(){
 
     function attach_quest_list_events(this_quest) {
         $(this_quest).click(function(){
-            $(act_selected_quest).css("background-color","#db6e51")
+            $(act_selected_quest).removeClass("quest_selected")
+            $(act_selected_quest).css('--myVar_3', '21px');
             act_selected_quest = this;
-            $(this).css("background-color","#442a2e")
+
+            $(this).addClass("quest_selected")
+            $(this).css('--myVar_3', '21px');
             select_quest_edit_tab(this_quest)
         })
     }

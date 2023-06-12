@@ -47,12 +47,13 @@ function select_quest_edit_tab() {
     $("#tab_body").css("border-radius","30px")
     $("#tab_body").css("border-radius","0px 30px 30px 30px")
     
-    $($(".tab")[0]).css('--myVar_2', '21px');
-    $($(".tab")[0]).addClass("tab_selected")
-    console.log(act_selected_tab)
     if(act_selected_tab != null) {
         $(act_selected_tab).removeClass("tab_selected")
         $(act_selected_tab).css('--myVar_2', '0px');
     }
+
+    $($(".tab")[0]).css('--myVar_2', '21px');
+    $($(".tab")[0]).addClass("tab_selected")
+    
     act_selected_tab = $(".tab")[0]
 }

@@ -445,6 +445,7 @@ body {
     width: 100%;
     height: 89%;
     overflow: auto;
+    direction:rtl;
 }
 
 .quests {
@@ -455,6 +456,42 @@ body {
     justify-content: flex-start;
     align-items: center;
     padding-left: 27px;
+    transition:  all .3s;
+    position: relative;
+    direction:initial;
+}
+
+.quest_selected {
+    margin-right: 0px;
+    margin-left: 41px;
+    border-radius: 14px 0 0 14px;
+    transition: height .3s;
+    z-index:99;
+    --myVar_3: 0;
+}
+
+.quest_selected::before {
+    content: "";
+    position: absolute;
+    background-color: #ee8658;
+    top: 100px;
+    width: 45px;
+    border-top-right-radius: 22px;
+    right: 0px;
+    box-shadow: 17px 0px 0 0 #db6e51;
+    height: var(--myVar_3);
+  }
+
+.quest_selected::after {
+    content: "";
+    position: absolute;
+    background-color: #ee8658;
+    top: -21px;
+    width: 45px;
+    border-bottom-right-radius: 22px;
+    right: 0px;
+    box-shadow: 17px 0px 0 0 #db6e51;
+    height: var(--myVar_3);
 }
 
 #quest_list::-webkit-scrollbar { width: 30px; }
