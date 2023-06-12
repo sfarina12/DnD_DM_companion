@@ -225,7 +225,7 @@ body {
     z-index: 99;
 }
 
-#new_node_wizard {
+#new_node_wizard, #new_node_wizard_2 {
     position: relative;
     background: #db6e51;
     width: 100%;
@@ -240,7 +240,13 @@ body {
     color: wheat;
 }
 
-#new_node_wizard > input {
+#new_node_wizard_2 {
+    position: absolute;
+    left: 225px;
+    width: 86%;
+}
+
+#new_node_wizard > input,#new_node_wizard_2 > input {
     margin-top: 37px;
     width: 1000px;
     height: 82px;
@@ -252,9 +258,9 @@ body {
     font-size: 40px;
     padding-left: 26px;
 }
-#new_node_wizard > input:focus { outline: solid 5px #5f3b41; }
+#new_node_wizard > input:focus,#new_node_wizard_2 > input:focus { outline: solid 5px #5f3b41; }
 
-#new_node_wizard > div {
+#new_node_wizard > div,#new_node_wizard_2 >div {
     width: 400px;
     background-color: #5f3b41;
     text-align: center;
@@ -263,7 +269,7 @@ body {
     border-radius: 50px;
 }
 
-#close_new_node_wizard {
+#close_new_node_wizard,#close_new_node_wizard_2 {
     position: absolute;
     right: 9px;
     top: 10px;
@@ -360,7 +366,7 @@ body {
     background-color: #EE8658;
     width: 100%;
     height: 89%;
-    border-radius: 30px;
+    border-radius: 30px 30px 30px 30px;
     overflow: auto;
     position: absolute;
     bottom: 0px;
@@ -393,7 +399,7 @@ body {
     z-index: 8;
 }
 
-#new_quest {
+#new_quest,.quests {
     background-color: #db6e51;
     display: flex;
     justify-content: center;
@@ -432,3 +438,25 @@ body {
     box-shadow: -31px 0px 0 0 #ee8658;
     height: var(--myVar_2);
 }
+
+#quest_container { overflow: hidden; }
+
+#quest_list {
+    width: 100%;
+    height: 89%;
+    overflow: auto;
+}
+
+.quests {
+    min-height: 100px;
+    color: wheat;
+    font-size: 46px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 27px;
+}
+
+#quest_list::-webkit-scrollbar { width: 30px; }
+#quest_list::-webkit-scrollbar-track { background: #ee8658; border-radius: 30px; }
+#quest_list::-webkit-scrollbar-thumb { background: #db6e51; border: solid 8px #ee8658; border-radius: 30px; }

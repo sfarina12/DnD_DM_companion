@@ -15,10 +15,10 @@
         <div id="container_map_container" style="width: 100%; display: contents;">
             <div id="map_container">
                 <div id="new_node_wizard" style="opacity: 0; display:none">
-                What's the name of this quest?
-                <input type="text" name="new_node_name">
-                <div>Add new quest</div>
-                <img id="close_new_node_wizard" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
+                    What's the name of this quest?
+                    <input type="text" name="new_node_name">
+                    <div>Add new quest</div>
+                    <img id="close_new_node_wizard" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
                 </div>
                 <div class="button" id="new_node"> New quest </div>            
                 <div id="svgContainer" style="    
@@ -49,17 +49,25 @@
         </div>
 
         <div id="container_quest_container" style="width: 100%; display: contents;" class="closed">
+            <div id="new_node_wizard_2" style="opacity: 0; display:none">
+                What's the name of this quest?
+                <input type="text" name="new_node_name">
+                <div>Add new quest</div>
+                <img id="close_new_node_wizard_2" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
+            </div>
             <div id="quest_container">
-                <div id="new_quest">
+                <div id="new_quest" >
                     <img style="width: 74px; margin-top: 12px; margin-bottom: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/>
+                </div>
+                <div id="quest_list">
                 </div>
             </div>
             <div id="quest_container_tabs">
                 <div id="tab_list">
-                    <div class="tab tab_selected"><img width="60" height="60" src="https://img.icons8.com/fluency/60/pen.png" alt="pen"/></div>
+                    <div class="tab frst"><img width="60" height="60" src="https://img.icons8.com/fluency/60/pen.png" alt="pen"/></div>
                     <div class="tab"><img width="60" height="60" src="https://img.icons8.com/fluency/60/check-all.png" alt="check-all"/></div>
                     <div class="tab"><img width="60" height="60" src="https://img.icons8.com/fluency/60/treasure-chest.png" alt="treasure-chest"/></div>
-                    <div class="tab"><img width="60" height="60" src="https://img.icons8.com/fluency/60/conference-call.png" alt="conference-call"/></div>
+                    <div class="tab last"><img width="60" height="60" src="https://img.icons8.com/fluency/60/conference-call.png" alt="conference-call"/></div>
                 </div>
                 <div id="tab_body">
 
@@ -70,6 +78,7 @@
         
     </body>
 
+    <script src="js/quest_editor.js"></script>
     <script src="js/better_node_builder.js"></script>
     <script src="js/navigation_system.js"></script>
     <script src="js/svgDraw.js"></script>
