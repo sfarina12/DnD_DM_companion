@@ -1,7 +1,5 @@
+var act_selected_quest = null;
 $(document).ready(function(){ 
-    var act_selected_quest = null;
-    
-
     $("#new_node_wizard_2 > div").click(function(){
         add_quest_to_list($("#new_node_wizard_2 > input").val())
         $( "#new_node_wizard_2" ).animate({ opacity: 0, }, 300, function() {
@@ -21,6 +19,16 @@ $(document).ready(function(){
         $("#new_node_wizard_2").attr("style","opacity: 0; ")
         $( "#new_node_wizard_2" ).animate({ opacity: 1, }, 300, function() {});
     }) 
+
+    $(".checks_container > div").click(function(){ 
+        if($(this).attr("check")=="n") {
+            $(this).css("background-color","#5f3b41")
+            $(this).attr("check","y")
+        } else {
+            $(this).css("background-color","#db6e51")
+            $(this).attr("check","n")
+        }
+     })
 
     function attach_quest_list_events(this_quest) {
         $(this_quest).click(function(){

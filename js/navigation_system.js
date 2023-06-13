@@ -23,8 +23,8 @@ $(document).ready(function(){
     })
 
     $(".tab").click(function(){
-        if($(this) != act_selected_tab) {
-
+        if((act_selected_quest != null) && ($(this) != act_selected_tab) && ($(this).attr("page") != $(act_selected_tab).attr("page"))) {
+            $("#"+$(this).attr("page")).removeClass("closed")
             $("#tab_body").css("border-radius","30px")
 
             if($(this).hasClass("frst"))
@@ -35,6 +35,7 @@ $(document).ready(function(){
             $(this).css('--myVar_2', '21px');
             $(this).addClass("tab_selected")
 
+            $("#"+$(act_selected_tab).attr("page")).addClass("closed")
             $(act_selected_tab).removeClass("tab_selected")
             $(act_selected_tab).css('--myVar_2', '0px');
 
@@ -54,6 +55,7 @@ function select_quest_edit_tab() {
 
     $($(".tab")[0]).css('--myVar_2', '21px');
     $($(".tab")[0]).addClass("tab_selected")
+    $("#"+$($(".tab")[0]).attr("page")).removeClass("closed")
     
     act_selected_tab = $(".tab")[0]
 }
