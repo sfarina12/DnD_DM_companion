@@ -258,7 +258,7 @@ body {
     font-size: 40px;
     padding-left: 26px;
 }
-#new_node_wizard > input:focus,#new_node_wizard_2 > input:focus { outline: solid 5px #5f3b41; }
+#new_node_wizard > input:focus,#new_node_wizard_2 > input:focus,#description_tab_body > textarea:focus { outline: solid 5px #5f3b41; }
 
 #new_node_wizard > div,#new_node_wizard_2 >div {
     width: 400px;
@@ -497,3 +497,29 @@ body {
 #quest_list::-webkit-scrollbar { width: 30px; }
 #quest_list::-webkit-scrollbar-track { background: #ee8658; border-radius: 30px; }
 #quest_list::-webkit-scrollbar-thumb { background: #db6e51; border: solid 8px #ee8658; border-radius: 30px; }
+
+#description_tab_body {
+    padding-left: 39px;
+    display: block;
+    width: 95%;
+    height: 100%;
+    overflow: auto;
+    font-size: 34px;
+    color: wheat;
+    font-weight: bold;
+}
+
+#description_tab_body > textarea {
+    background-color: #db6e51;
+    width: 94.5%;
+    height: 86%;
+    border: none;
+    border-radius: 25px;
+    border: solid 6px #ee8658;
+    color: wheat;
+    font-size: 40px;
+    padding-left: 26px;
+    padding-right: 26px;
+    padding-top: 20px;
+    outline: none;
+}
