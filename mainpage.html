@@ -51,9 +51,20 @@
         <div id="container_quest_container" style="width: 100%; display: contents;" class="closed">
             <div id="new_node_wizard_2" style="opacity: 0; display:none">
                 What's the name of this quest?
-                <input type="text" name="new_node_name">
+                <input type="text" name="new_quest_name">
                 <div>Add new quest</div>
                 <img id="close_new_node_wizard_2" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
+            </div>
+            <div id="new_node_wizard_4" style="opacity: 0; display:none">
+                Choose the loot to add
+                <ul>
+                    <li class="li_sel">Loot di test</li>
+                    <li>Loot di test</li>
+                    <li>Loot di test</li>
+                    <li>Loot di test</li>
+                </ul>
+                <div>Add loot</div>
+                <img id="close_new_node_wizard_4" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
             </div>
             <div id="quest_container">
                 <div id="new_quest" >
@@ -74,21 +85,30 @@
                         <p>Quest description</p>
                         <textarea></textarea>
                     </div>
-                    <div id="check_tab_body" style="" class="closed">
-                        <div class="checks_container"><div check="n"></div><p>in bel test di checkbox</p></div>
-                        <div class="checks_container"><div check="n"></div><p>in bel test di checkbox</p></div>
-                        <div class="checks_container"><div check="n"></div><p>in bel test di checkbox</p></div>
-                        <div class="checks_container"><div check="n"></div><p>in bel test di checkbox</p></div>
-                        <div class="checks_container"><div check="n"></div><p>in bel test di checkbox</p></div>
-                        <div class="checks_container"><div check="n"></div><p>in bel test di checkbox</p></div>
-                        <div class="checks_container"><div check="n"></div><p>in bel test di checkbox</p></div>
-                        <div class="checks_container"><div check="n"></div><p>in bel test di checkbox</p></div>
-                        <div class="checks_container"><div check="n"></div><p>in bel test di checkbox</p></div>
-                        <div class="checks_container"><div check="n"></div><p>in bel test di checkbox</p></div>
-                        <div class="checks_container"><div check="n"></div><p>in bel test di checkbox</p></div>
-                        <div class="checks_container"><div check="n"></div><p>in bel test di checkbox</p></div>
+                    <div id="check_tab_body" class="closed">
+                        <p style="color: wheat; font-size: 34px; font-weight: bold; margin-top: -54px; margin-bottom: 10px; margin-left: 19px;">
+                            Quest steps
+                        </p>
+                        <div id="new_check" style="margin:0;">
+                            <img style="width: 74px; margin-top: 12px; margin-bottom: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/>
+                        </div>
+                        <div id="new_node_wizard_3" style="opacity: 0; display:none">
+                            What's the name of this step?
+                            <input type="text" name="new_node_name">
+                            <div>Add new check</div>
+                            <img id="close_new_node_wizard_3" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
+                        </div>
+                        <div id="check_list"></div>
                     </div>
-                    <div id="loot_tab_body" class="closed"></div>
+                    <div id="loot_tab_body" class="closed">
+                        <p style="color: wheat; font-size: 34px; font-weight: bold; margin-left: 39px;">
+                            Quest loot
+                        </p>
+                        <div id="new_addloot">
+                            <img style="width: 74px; margin-top: 12px; margin-bottom: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/>
+                        </div>
+                        <div id="loot_list"></div>
+                    </div>
                     <div id="npc_tab_body" class="closed"></div>
                 </div>
             </div>

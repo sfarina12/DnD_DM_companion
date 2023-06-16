@@ -40,6 +40,8 @@ $(document).ready(function(){
             $(act_selected_tab).css('--myVar_2', '0px');
 
             act_selected_tab = $(this)
+
+            manage_tab_content()
         }
     })
 })
@@ -58,4 +60,22 @@ function select_quest_edit_tab() {
     $("#"+$($(".tab")[0]).attr("page")).removeClass("closed")
     
     act_selected_tab = $(".tab")[0]
+    manage_tab_content();
+}
+
+function manage_tab_content() {
+    set_tab_content()
+}
+
+function set_tab_content() {
+    var qk = get_selected_quest_item()
+
+    $("#description_tab_body textarea").val(quest_list[get_selected_quest_item(false)].description)
+    $("#check_list").empty()
+    console.log(qk.checks.length > 0)
+    if(qk.checks.length > 0)
+        qk.checks.forEach(function(k,v){
+            attach_check_events(k)
+            $("#check_list").append(k)
+        })
 }
