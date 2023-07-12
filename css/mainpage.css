@@ -675,3 +675,25 @@ body {
     outline: none;
 }
 
+#save_contex_menu {
+    margin-top: 21px;
+    margin-left: 21px;
+    margin-right: 21px;
+    border-radius: 17px;
+    height: 188px;
+    transition: all .3s;
+    position: absolute;
+    bottom: 136px;
+    background-color: #db6e51;
+    width: 98;
+    overflow: hidden;
+}
+
+#save_contex_menu img {
+    width: 77px;
+    margin-left: 9px;
+    margin-top: 10px;
+}
+
+.menu_closed { height: 0 !important; }
+

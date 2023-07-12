@@ -24,3 +24,10 @@ function pack_cookie(value) {
 function unpack_cookie() {
     Cookies.get("nodes")
 }*/
+
+$("#save_menu").click(function() {
+    if($("#save_contex_menu").hasClass("menu_closed")) 
+        $("#save_contex_menu").removeClass("menu_closed")
+    else
+        $("#save_contex_menu").addClass("menu_closed")
+})
