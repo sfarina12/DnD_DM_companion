@@ -72,10 +72,20 @@ function set_tab_content() {
 
     $("#description_tab_body textarea").val(quest_list[get_selected_quest_item(false)].description)
     $("#check_list").empty()
-    console.log(qk.checks.length > 0)
+    $("#loot_list").empty()
+    $("#npc_list").empty()
+
     if(qk.checks.length > 0)
         qk.checks.forEach(function(k,v){
             attach_check_events(k)
             $("#check_list").append(k)
+        })
+    if(qk.loot.length > 0)
+        qk.loot.forEach(function(k,v){
+            $("#loot_list").append(k)
+        })
+    if(qk.npc.length > 0)
+        qk.npc.forEach(function(k,v){
+            $("#npc_list").append(k)
         })
 }

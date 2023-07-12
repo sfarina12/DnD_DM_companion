@@ -11,6 +11,9 @@
         <div id="navbar_container">
             <div class="nav_btn nav_btn_selected" page="container_map_container"><img src="https://img.icons8.com/fluency/96/map-editing.png" alt="map-editing"/></div>
             <div class="nav_btn" page="container_quest_container"><img src="https://img.icons8.com/fluency/96/magical-scroll.png" alt="map-editing"/></div>
+            <div class="nav_btn"><img src="https://img.icons8.com/fluency/60/treasure-chest.png" alt="treasure-chest"/></div>
+            <div class="nav_btn"><img src="https://img.icons8.com/fluency/60/conference-call.png" alt="conference-call"/></div>
+            <div class="nav_btn_bottom"><img src="https://img.icons8.com/fluency/48/save.png" alt="save"/></div>
         </div>
         
         <div id="container_map_container" style="width: 100%; display: contents;">
@@ -56,17 +59,6 @@
                 <div>Add new quest</div>
                 <img id="close_new_node_wizard_2" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
             </div>
-            <div id="new_node_wizard_4" style="opacity: 0; display:none">
-                Choose the loot to add
-                <ul>
-                    <li class="li_sel">Loot di test</li>
-                    <li>Loot di test</li>
-                    <li>Loot di test</li>
-                    <li>Loot di test</li>
-                </ul>
-                <div>Add loot</div>
-                <img id="close_new_node_wizard_4" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
-            </div>
             <div id="quest_container">
                 <div id="new_quest" >
                     <img style="width: 74px; margin-top: 12px; margin-bottom: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/>
@@ -82,35 +74,72 @@
                     <div class="tab last" page="npc_tab_body"><img width="60" height="60" src="https://img.icons8.com/fluency/60/conference-call.png" alt="conference-call"/></div>
                 </div>
                 <div id="tab_body">
+                    <!--TAB DESCRIPTION-->
                     <div id="description_tab_body" class="closed">
                         <p>Quest description</p>
                         <textarea></textarea>
                     </div>
+                    <!--TAB CHECKS-->
                     <div id="check_tab_body" class="closed">
-                        <p style="color: wheat; font-size: 34px; font-weight: bold; margin-top: -54px; margin-bottom: 10px; margin-left: 19px;">
-                            Quest steps
-                        </p>
-                        <div id="new_check" style="margin:0;">
-                            <img style="width: 74px; margin-top: 12px; margin-bottom: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/>
-                        </div>
+                        <p style="color: wheat; font-size: 34px; font-weight: bold; margin-top: -8px; margin-bottom: 13px; margin-left: 19px;"> Quest steps </p>
+                        <div id="new_check" style="margin:0;"> <img style="width: 74px; margin-top: 12px; margin-bottom: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/> </div>
+                        
                         <div id="new_node_wizard_3" style="opacity: 0; display:none">
                             What's the name of this step?
                             <input type="text" name="new_node_name">
                             <div>Add new check</div>
                             <img id="close_new_node_wizard_3" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
                         </div>
+
                         <div id="check_list"></div>
                     </div>
+                    <!--TAB LOOT-->
                     <div id="loot_tab_body" class="closed">
-                        <p style="color: wheat; font-size: 34px; font-weight: bold; margin-left: 39px;">
-                            Quest loot
-                        </p>
-                        <div id="new_addloot">
-                            <img style="width: 74px; margin-top: 12px; margin-bottom: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/>
+                        <p style="color: wheat; font-size: 34px; font-weight: bold; margin-top: -8px; margin-bottom: 13px; margin-left: 19px;"> Quest loot </p>
+                        <div id="new_addloot" style="margin: 0px;"> <img style="width: 74px; margin-top: 12px; margin-bottom: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/> </div>
+                        
+                        <div id="new_node_wizard_4" style="opacity: 0; display:none">
+                            Choose the loot to add
+                            <ul>
+                                <li class="li_sel_chx">Loot di test</li>
+                                <li>Loot di test</li>
+                                <li>Loot di test</li>
+                                <li>Loot di test</li>
+                                <li>Loot di test</li>
+                                <li>Loot di test</li>
+                                <li>Loot di test</li>
+                                <li>Loot di test</li>
+                            </ul>
+                            <div>Add loot</div>
+                            <img id="close_new_node_wizard_4" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
                         </div>
+
                         <div id="loot_list"></div>
                     </div>
-                    <div id="npc_tab_body" class="closed"></div>
+
+                    <!--TAB LOOT-->
+                    <div id="npc_tab_body" class="closed">
+                        <p style="color: wheat; font-size: 34px; font-weight: bold; margin-top: -8px; margin-bottom: 13px; margin-left: 19px;"> Quest npcs </p>
+                        <div id="new_addnpc" style="margin: 0px;"> <img style="width: 74px; margin-top: 12px; margin-bottom: 12px;" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/plus-math.png" alt="plus-math"/> </div>
+                        
+                        <div id="new_node_wizard_5" style="opacity: 0; display:none">
+                            Choose an npc to add
+                            <ul>
+                                <li class="li_sel_npc">Loot di test</li>
+                                <li>Loot di test</li>
+                                <li>Loot di test</li>
+                                <li>Loot di test</li>
+                                <li>Loot di test</li>
+                                <li>Loot di test</li>
+                                <li>Loot di test</li>
+                                <li>Loot di test</li>
+                            </ul>
+                            <div>Add npc</div>
+                            <img id="close_new_node_wizard_5" src="https://img.icons8.com/fluency-systems-filled/96/ee8658/close-window.png" alt="delete-sign"/>
+                        </div>
+
+                        <div id="npc_list"></div>
+                    </div>
                 </div>
             </div>
         </div>

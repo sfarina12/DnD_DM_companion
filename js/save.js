@@ -1,6 +1,6 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
     var timer_save
-    var time_to_save = 4000//50000
+    var save_every = 4000//50000
 
     //unpack_cookie()
 
@@ -12,17 +12,15 @@ $(document).ready(function(){
         clearTimeout(timer_save);
 
         unpack_cookie()
-    },time_to_save);
+    },save_every);
 })
 
 function pack_cookie(value) {
     var str = JSON.stringify(value)
+    console.log(str)
     return str
 }
 
 function unpack_cookie() {
-    //var value = `; ${document.cookie}`;
-    console.log(Cookies.get("nodes"))
-    /*var parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();*/
-}
+    Cookies.get("nodes")
+}*/
