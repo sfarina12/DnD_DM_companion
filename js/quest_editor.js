@@ -129,11 +129,15 @@ function attach_quest_list_events(this_quest) {
     })
 }
 
-function add_quest_to_list(text = "test") {
-    var qt = $('<div class="quests" quest_id="'+(node_list.length-1)+'">'+text+'</div>')
+function add_quest_to_list(text = "test",quest_id = "") {
+    var id = quest_id == "" ? (node_list.length-1) : quest_id
+
+    var qt = $('<div class="quests" quest_id="'+id+'">'+text+'</div>')
     $("#quest_list").append(qt)
     quest_list.push(new quest(qt))
     attach_quest_list_events(qt)
+
+    return quest_list[quest_list.length-1];
 }
 
 function attach_check_events (this_check) {
@@ -148,12 +152,19 @@ function attach_check_events (this_check) {
     })
 }
 
-function add_check(text = "text_check") {
-    var ch = $('<div class="checks_container" style="margin-bottom:20px"><div check="n"></div><p>'+text+'</p></div>')
+function add_check(text = "text_check",selected_quest = "",check_state = "") {
+    var state = check_state == ""?"n":check_state
+    
+    var ch = $('<div class="checks_container" style="margin-bottom:20px"><div check="'+state+'"></div><p>'+text+'</p></div>')
     $("#check_list").append(ch)
     
     attach_check_events(ch)
-    get_selected_quest_item().checks.push(ch);
+    if(selected_quest == "")
+        get_selected_quest_item().checks.push(ch);
+    else
+        selected_quest.checks.push(ch);
+
+    return ch
 }
 
 function fill_loot_list() {

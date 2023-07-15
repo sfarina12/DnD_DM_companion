@@ -49,7 +49,7 @@ function pack_quest(value) {
             q_npc.push($(k1).html())
         })
         
-        tmp_array.push("("+q_id+"|"+q_name+"|"+q_desc+"|"+q_checks+"|"+q_loot+"|"+q_npc+")")
+        tmp_array.push("|?!"+q_id+"|"+q_name+"|"+q_desc+"|"+q_checks+"|"+q_loot+"|"+q_npc+"|?!")
     })
     return tmp_array
 }
@@ -97,11 +97,12 @@ function _unpack(file) {
             global_path_counter = content.split("|88|")[0]
 
             save__quests = content.split("|88|")[1]
-            save__quests = content.split(",")
+            save__quests = save__quests.split("|?!")
 
             save__nodes = content.split("|88|")[2]
             save__nodes = save__nodes.split("(")
 
+            //----------------------RESTORE NODES
             tmp_array = save__nodes
             paths_list = []
             
@@ -123,7 +124,6 @@ function _unpack(file) {
                               )  
                 }
             })
-
             paths_list.forEach(function(k,v) {
                 tmp_paths = k.split(",")
                                 
@@ -140,6 +140,61 @@ function _unpack(file) {
                         add_path(start,end)
                     }
                 })
+            })
+
+            //----------------------RESTORE QUESTS
+            tmp_array = save__quests
+
+            tmp_array.forEach(function(k,v) {
+                if(k!="") {
+                    tmp_quest = k.split("|")
+
+                    var quest = add_quest_to_list(tmp_quest[1],tmp_quest[0])
+                    quest.description = tmp_quest[2]
+                    
+                    var tmp_checks = tmp_quest[3].split(">,")
+                    var tmp_loot = tmp_quest[4].split(">,")
+                    var tmp_npc = tmp_quest[5].split(">,")
+                    
+                    tmp_checks.forEach(function(k,v) {
+                        var this_check;
+                        if(!k.endsWith(">"))
+                            this_check = $(k+">")
+                        else
+                            this_check = $(k)
+                            
+                        this_check = add_check($(this_check).text(),quest,$(this_check).attr("check")) 
+                        console.log(this_check)
+                        if($($(this_check).find("div")).attr("check")=="n") {
+                            $($(this_check).find("div")).css("background-color","#5f3b41")
+                            $($(this_check).find("div")).attr("check","y")
+                        } else {
+                            $($(this_check).find("div")).css("background-color","#db6e51")
+                            $($(this_check).find("div")).attr("check","n")
+                        }
+                    })
+                    tmp_loot.forEach(function(k,v) {
+                        if(!k.endsWith(">")) {
+                            var lt = $('<div class="checks_container" style="padding-left:29px;margin-bottom:20px" style="margin-bottom:20px"><p>'+$(k+">").text()+'</p></div>')
+                            quest.loot.push(lt)
+                        }
+                        else {
+                            var lt = $('<div class="checks_container" style="padding-left:29px;margin-bottom:20px" style="margin-bottom:20px"><p>'+$(k).text()+'</p></div>')
+                            quest.loot.push(lt)
+                        }
+                    })
+                    tmp_npc.forEach(function(k,v) {
+                        if(!k.endsWith(">")) {
+                            var lt = $('<div class="checks_container" style="padding-left:29px;margin-bottom:20px" style="margin-bottom:20px"><p>'+$(k+">").text()+'</p></div>')
+                            quest.npc.push(lt)
+                        }
+                        else {
+                            var lt = $('<div class="checks_container" style="padding-left:29px;margin-bottom:20px" style="margin-bottom:20px"><p>'+$(k).text()+'</p></div>')
+                            quest.npc.push(lt)
+                        }
+                    })
+                    
+                }
             })
         }
         
