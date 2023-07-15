@@ -174,9 +174,13 @@ function build_node (node_to_build) {
     node_list.push(new node(node_to_build,[],conn_list))
 }
 
-function set_nodes(make_new = false,debug = false,quest_name="test_name") {
+function set_nodes(make_new = false,debug = false,quest_name="test_name",preset_id = "",location = "",to_node = "") {
+    var id = (preset_id == "")?node_list.length:preset_id;
+    var to = (to_node == "")?"":to_node;
+    var style = (location == "")?"left: 15px; top: 21px;":location;
+
     if(make_new) {
-        var new_element = $('<div id="'+node_list.length+'" to="" class="quest_node" style="left: 15px; top: 21px;">'+
+        var new_element = $('<div id="'+id+'" to="'+to+'" class="quest_node" style="'+style+'">'+
                                 quest_name+
                                 '<div style="height:0px">'+
                                     '<img id="delete_btn" src="https://img.icons8.com/fluency-systems-filled/96/ff4545/close-window.png" alt="delete-sign"/>'+
@@ -217,14 +221,16 @@ function update_path (node_ev) {
 }
 
 function add_path (node_ev,destination_id) {
+    var id = "path_"+global_path_counter+"_"+destination_id
+
     newpath = document.createElementNS('http://www.w3.org/2000/svg',"path");  
-    newpath.setAttributeNS(null, "id", "path_"+global_path_counter+"_"+destination_id);
+    newpath.setAttributeNS(null, "id", id);
     newpath.setAttributeNS(null, "stroke-width", "10px");
     newpath.setAttributeNS(null, "fill", "none");
     newpath.setAttributeNS(null, "stroke", "#5F3B41");
     $("#svg1").append(newpath)
     global_path_counter++;
-
+    
     node_list[$(node_ev).attr("id")].svg.push(newpath)
     connectElements($("#svg1"),
                     $(newpath),
