@@ -2,6 +2,7 @@ var act_selected_quest = null;
 var quest_list = []
 var loot_lit = ["sword","axe","apple","tua madre","boat","mithril","oppenhimer"]
 var npc_lit = ["nicola","peppe","sir alonne","tua madre","napoli","naruto","oppenhimer"]
+var is_deleteing = false;
 
 class quest {
     constructor(ui,description = "", checks = [],loot = [],nps = []) {
@@ -22,6 +23,15 @@ $(document).ready(function(){
     $("#new_check").click(function(){
         $("#new_node_wizard_3").attr("style","opacity: 0;")
         $( "#new_node_wizard_3" ).animate({ opacity: 1, }, 300, function() {});
+    })
+
+    $("#del_check").click(function(){
+        if(get_selected_quest_item().checks.length > 0) {
+            is_deleteing = !is_deleteing
+
+            if(is_deleteing) $(this).attr("style","margin:0;width: 48%;background-color: #c43d3d;")
+            else $(this).attr("style","margin:0;width: 48%;background-color: #994747;")
+        }
     })
 
     $("#new_addloot").click(function(){
@@ -180,12 +190,19 @@ function attach_check_events (this_check) {
             $($(this_check).find("div")).attr("check","n")
         }
     })
+    $(this_check).click(function() {
+        if(is_deleteing) 
+            delete_check(this)
+    })
 }
 
 function add_check(text = "text_check",selected_quest = "",check_state = "") {
     var state = check_state == ""?"n":check_state
     
-    var ch = $('<div class="checks_container" style="margin-bottom:20px"><div check="'+state+'"></div><p>'+text+'</p></div>')
+    var ch = $( '<div class="checks_container" style="margin-bottom:20px">'+
+                    '<div check="'+state+'"></div>'+
+                    '<p>'+text+'</p>'+
+                '</div>')
     $("#check_list").append(ch)
     
     attach_check_events(ch)
@@ -195,6 +212,17 @@ function add_check(text = "text_check",selected_quest = "",check_state = "") {
         selected_quest.checks.push(ch);
 
     return ch
+}
+
+function delete_check (this_check) {
+    quest_list[get_selected_quest_item(false)].checks.forEach(function(k,v) {
+            if(k.text() == $(this_check).text())
+                quest_list[get_selected_quest_item(false)].checks.splice(v, 1);
+    })
+    $(this_check).remove()
+
+    if(get_selected_quest_item().checks.length == 0) 
+        $("#del_check").attr("style","margin:0;width: 48%;background-color: #994747;")
 }
 
 function fill_loot_list() {

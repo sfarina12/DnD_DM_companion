@@ -483,7 +483,8 @@ body {
 .quests,
 #new_check,
 #new_addloot,
-#new_addnpc {
+#new_addnpc,
+#del_check {
     background-color: #db6e51;
     display: flex;
     justify-content: center;
@@ -661,6 +662,7 @@ body {
     color: wheat;
     font-size: 31px;
     font-weight: bold;
+    max-width: 83%;
 }
 
 .open_new_check {
