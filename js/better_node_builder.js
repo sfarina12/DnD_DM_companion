@@ -148,6 +148,7 @@ function attach_node_events (node_ev) {
         },time_to_open_info_pane*1000);
     }).on("touchend touchmove",function(){ clearTimeout(timer); tml_open_node = null; });
     
+    //open node info connections
     $($($($(node_ev)[0]).children()).children()[1]).on("touchstart",function(node_ev){
         $("#node_info_container").addClass("expand_node_info_container")
 
@@ -158,13 +159,17 @@ function attach_node_events (node_ev) {
         
         show_past_connections(open_node)
     })
+    //delete node
     $($($($(node_ev)[0]).children()).children()[0]).on("touchstart",function(node_ev){
         if($(open_node).attr("to") != "") 
             delete_all_paths(open_node)
         //node_list.splice($(open_node).attr("id"), 1)
         node_list[$(open_node).attr("id")] = null
+        node_list[$(open_node).attr("id")] = null
         $("#map_container").remove("#"+$(open_node).attr("id"))
         $($(open_node)).remove()
+
+        delete_quest_to_list($(".quests[quest_id='"+$(open_node).attr("id")+"']"))
     })
 }
 

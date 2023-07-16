@@ -545,6 +545,14 @@ body {
     direction:initial;
 }
 
+.quests text {
+    margin-left: 10px;
+    max-width: 87%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .quest_selected {
     margin-right: 0px;
     margin-left: 41px;

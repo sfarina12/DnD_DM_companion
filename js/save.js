@@ -164,7 +164,7 @@ function _unpack(file) {
                             this_check = $(k)
                             
                         this_check = add_check($(this_check).text(),quest,$(this_check).attr("check")) 
-                        console.log(this_check)
+                        
                         if($($(this_check).find("div")).attr("check")=="n") {
                             $($(this_check).find("div")).css("background-color","#5f3b41")
                             $($(this_check).find("div")).attr("check","y")

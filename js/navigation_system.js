@@ -67,6 +67,16 @@ function manage_tab_content() {
     set_tab_content()
 }
 
+function close_quest() {
+    $("#"+$(act_selected_tab).attr("page")).addClass("closed")
+    $(act_selected_tab).removeClass("tab_selected")
+    $(act_selected_tab).css('--myVar_2', '0px');
+    
+    $("#tab_body").css("border-radius","")
+
+    act_selected_tab = null
+}
+
 function set_tab_content() {
     var qk = get_selected_quest_item()
 

@@ -106,7 +106,7 @@ function get_selected_quest_item(is_content=true){
     var finalV;
     var t = false;
     quest_list.forEach(function(k,v){
-        if(!t) {
+        if(!t && (k != null)) {
             if($(k.ui).attr("quest_id") == $(".quest_selected").attr("quest_id")) {
                 finalK = k
                 finalV = v;
@@ -118,26 +118,56 @@ function get_selected_quest_item(is_content=true){
 }
 
 function attach_quest_list_events(this_quest) {
-    $(this_quest).click(function(){
-        $(act_selected_quest).removeClass("quest_selected")
-        $(act_selected_quest).css('--myVar_3', '21px');
-        act_selected_quest = this;
+    //open quest
+    $(this_quest).click(function(e){
+        if($(e.target).prop("tagName") != "IMG") {
+            $(act_selected_quest).removeClass("quest_selected")
+            $(act_selected_quest).css('--myVar_3', '21px');
+            act_selected_quest = this;
 
-        $(this).addClass("quest_selected")
-        $(this).css('--myVar_3', '21px');
-        select_quest_edit_tab(this_quest)
+            $(this).addClass("quest_selected")
+            $(this).css('--myVar_3', '21px');
+            select_quest_edit_tab(this_quest)
+        }
+    })
+    //delete quest & node
+    $(this_quest).find("img").click(function(){
+        selected_node = $("#"+$(this_quest).attr("quest_id"))
+        if($(selected_node).attr("to") != "") 
+            delete_all_paths(selected_node)
+        
+        node_list[$(selected_node).attr("id")] = null
+        $("#map_container").remove("#"+$(selected_node).attr("id"))
+        $($(selected_node)).remove()
+
+        delete_quest_to_list(this_quest)
+        act_selected_quest = null
     })
 }
 
 function add_quest_to_list(text = "test",quest_id = "") {
     var id = quest_id == "" ? (node_list.length-1) : quest_id
 
-    var qt = $('<div class="quests" quest_id="'+id+'">'+text+'</div>')
+    var qt = $('<div class="quests" quest_id="'+id+'">'+
+                    '<img style="width:57px" src="https://img.icons8.com/fluency-systems-filled/96/F5DEB3/trash.png" alt="trash"/>'+
+                    '<text>'+text+'</text>'+
+                '</div>')
     $("#quest_list").append(qt)
     quest_list.push(new quest(qt))
     attach_quest_list_events(qt)
 
     return quest_list[quest_list.length-1];
+}
+
+function delete_quest_to_list(quest_to_delete) {
+    quest_list.forEach(function(k,v) {
+        if(k != null)
+            if($(k.ui).attr("quest_id") == $(quest_to_delete).attr("quest_id")) {
+                quest_list[v] = null
+                $(k.ui).remove()
+                close_quest()
+            }
+    })
 }
 
 function attach_check_events (this_check) {
