@@ -1,12 +1,14 @@
 var act_selected_tab
+var act_selected = $(".nav_btn")[0]
 
 $(document).ready(function(){ 
-    var act_selected = $(".nav_btn")[0]
+    
     //var act_selected_tab = $(".tab")[0]
     $('.nav_btn_selected').css('--myVar', '21px');
     $('.tab_selected').css('--myVar_2', '21px');
 
     $(".nav_btn").click(function(){ 
+        console.log(act_selected)
         if($(this) != act_selected) {
             
             $(this).css('--myVar', '21px');
@@ -18,7 +20,6 @@ $(document).ready(function(){
             $("#"+$(act_selected).attr("page")).addClass("closed")
 
             act_selected = $(this)
-            
         }
     })
 
@@ -99,3 +100,28 @@ function set_tab_content() {
             $("#npc_list").append(k)
         })
 }
+
+$("#go_to_quest").click(function() {
+    //switch page
+    var element = ".nav_btn[page='"+$(this).attr("page")+"']"
+    
+    $(element).css('--myVar', '21px');
+    $(element).addClass("nav_btn_selected")
+    $("#"+$(element).attr("page")).removeClass("closed")
+
+    $(act_selected).removeClass("nav_btn_selected")
+    $(act_selected).css('--myVar', '0px');
+    $("#"+$(act_selected).attr("page")).addClass("closed")
+
+    act_selected = $(element)
+
+    //open quest
+    $(act_selected_quest).removeClass("quest_selected")
+    $(act_selected_quest).css('--myVar_3', '21px');
+    act_selected_quest = this;
+
+    element = ".quests[quest_id='"+$(open_node).attr("id")+"']"
+    $(element).addClass("quest_selected")
+    $(element).css('--myVar_3', '21px');
+    select_quest_edit_tab(element)
+})  
