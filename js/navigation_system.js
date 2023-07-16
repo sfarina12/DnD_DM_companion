@@ -8,7 +8,6 @@ $(document).ready(function(){
     $('.tab_selected').css('--myVar_2', '21px');
 
     $(".nav_btn").click(function(){ 
-        console.log(act_selected)
         if($(this) != act_selected) {
             
             $(this).css('--myVar', '21px');
