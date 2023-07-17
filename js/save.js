@@ -126,15 +126,14 @@ function _unpack(file) {
             })
             paths_list.forEach(function(k,v) {
                 tmp_paths = k.split(",")
-                                
+                
+                var start_str = tmp_paths[tmp_paths.length-1].split("(")[1]
+                start_str = start_str.substring(0,start_str.length-1)
+                var start = $("#"+start_str)
+                
                 tmp_paths.forEach(function (k1,v1) {
                     if(k1 != "") {                       
-                        var name_path = k1.split("_")
-
-                        var start_str = name_path[2].split("(")[1]
-                        start_str = start_str.substring(0,start_str.length-1)
-                        var start = $("#"+start_str)
-                        
+                        var name_path = k1.split("_")                        
                         var end = name_path[2].split("(")[0]
                     
                         add_path(start,end)
@@ -151,11 +150,21 @@ function _unpack(file) {
 
                     var quest = add_quest_to_list(tmp_quest[1],tmp_quest[0])
                     quest.description = tmp_quest[2]
-                    
-                    var tmp_checks = tmp_quest[3].split(">,")
-                    var tmp_loot = tmp_quest[4].split(">,")
-                    var tmp_npc = tmp_quest[5].split(">,")
-                    
+
+                    var tmp_checks = []
+                    var tmp_loot = []
+                    var tmp_npc = []
+
+                    if(tmp_quest[3]!==undefined)
+                        if(tmp_quest[3].length > 0)
+                            tmp_checks = tmp_quest[3].split(">,")
+                    if(tmp_quest[4]!==undefined)
+                            if(tmp_quest[4].length > 0)
+                                tmp_loot = tmp_quest[4].split(">,")
+                    if(tmp_quest[5]!==undefined)
+                                if(tmp_quest[5].length > 0)
+                                    tmp_npc = tmp_quest[5].split(">,")
+
                     tmp_checks.forEach(function(k,v) {
                         var this_check;
                         if(!k.endsWith(">"))
@@ -193,7 +202,6 @@ function _unpack(file) {
                             quest.npc.push(lt)
                         }
                     })
-                    
                 }
             })
         }
