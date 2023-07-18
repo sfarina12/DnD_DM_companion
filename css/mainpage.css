@@ -244,6 +244,14 @@ body {
     color: wheat;
 }
 
+#new_node_wizard {
+    position: fixed;
+    left: 224px;
+    width: 86.7%;
+    top: 26px;
+    height: 95.5%;
+}
+
 #new_node_wizard_4,
 #new_node_wizard_5 { 
     position: relative;
