@@ -143,9 +143,9 @@ function _unpack(file) {
 
             //----------------------RESTORE QUESTS
             tmp_array = save__quests
-
+  
             tmp_array.forEach(function(k,v) {
-                if(k!="") {
+                if(k!="" && k!=",") {
                     tmp_quest = k.split("|")
 
                     var quest = add_quest_to_list(tmp_quest[1],tmp_quest[0])
@@ -159,11 +159,11 @@ function _unpack(file) {
                         if(tmp_quest[3].length > 0)
                             tmp_checks = tmp_quest[3].split(">,")
                     if(tmp_quest[4]!==undefined)
-                            if(tmp_quest[4].length > 0)
-                                tmp_loot = tmp_quest[4].split(">,")
+                        if(tmp_quest[4].length > 0)
+                            tmp_loot = tmp_quest[4].split(">,")
                     if(tmp_quest[5]!==undefined)
-                                if(tmp_quest[5].length > 0)
-                                    tmp_npc = tmp_quest[5].split(">,")
+                        if(tmp_quest[5].length > 0)
+                            tmp_npc = tmp_quest[5].split(">,")
 
                     tmp_checks.forEach(function(k,v) {
                         var this_check;
