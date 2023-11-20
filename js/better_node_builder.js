@@ -252,7 +252,11 @@ function delete_path(this_node) {
         
         if(dest_id==$(this_node).attr("ccnt")) {
             $(node_list[$(open_node).attr("id")].svg.splice(v,1)).remove()
-            $(open_node).attr("to","")
+            var remaing_conn = $(open_node).attr("to").substring(0,$(open_node).attr("to").indexOf($(this_node).attr("ccnt"))-1)
+            remaing_conn = remaing_conn.substring(remaing_conn.indexOf("-"),remaing_conn.length)
+            console.log(remaing_conn)
+           
+            $(open_node).attr("to",remaing_conn)
             return;
         }
     })
